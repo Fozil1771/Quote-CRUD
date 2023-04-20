@@ -14,7 +14,7 @@
       <div class="flex gap-5 justify-center">
         <button
           class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700"
-          @click="getRandomQuote"
+          @click="onClickRandomQuote"
         >
           Random a quote
         </button>
@@ -38,18 +38,17 @@
         </router-link>
       </div>
 
-      <div class="mt-6" v-if="Object.keys(this.randomQuote).length !== 0">
-        <RandomQuote />
+      <div class="mt-6" v-if="showQuote">
+        <RandomQuote :randomQuote="this.randomQuote" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import RandomQuote from "../components/RandomQuote.vue";
 import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
-
-import RandomQuote from "../components/RandomQuote.vue";
 
 export default {
   name: "HomePage",
@@ -59,19 +58,46 @@ export default {
   data() {
     return {
       randomQuote: {},
-      showedQuotes: [],
+      showQuote: false,
     };
   },
-  computed: {
-    quotes() {
-      return this.$store.state.quotes;
-    },
+  setup() {
+    const store = useStore();
+
+    const quotes = computed(() => store.state.quotes);
+
+    onMounted(() => {
+      store.dispatch("getQuotesList");
+    });
+
+    const showedQuotes = [];
+
+    const getRandomQuote = () => {
+      const maxIndex = quotes.value.length - 1;
+      const randomIndex = Math.floor(Math.random() * maxIndex);
+
+      let q = quotes.value[randomIndex];
+      if (!showedQuotes.includes(q.id)) {
+        showedQuotes.push(q.id);
+        return q;
+      }
+      return q;
+    };
+
+    return {
+      quotes,
+      getRandomQuote,
+      showedQuotes,
+    };
   },
   methods: {
-    getRandomQuote() {
-      let randomIndex = Math.floor(Math.random() * this.quotes.length);
-      if (!this.showedQuotes.includes(randomIndex)) {
-        this.showedQuotes.push(randomIndex);
+    onClickRandomQuote() {
+      this.showQuote = true;
+      try {
+        this.randomQuote = this.getRandomQuote();
+        console.log(this.showedQuotes);
+      } catch (error) {
+        console.error(error);
       }
     },
   },

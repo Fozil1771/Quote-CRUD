@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto p-6">
     <router-link
-      :to="{ name: 'home' }"
+      :to="{ name: 'quoteList' }"
       class="text-gray-900 font-bold mb-5 rounded underline"
     >
       Back
@@ -60,16 +60,6 @@ export default {
       this.showForm = !this.showForm;
       console.log(this.showForm);
     },
-    // updateQuote() {
-    //   this.$store.dispatch("updateQuote", {
-    //     id: 21,
-    //     title: "aaaaaaaaa",
-    //     author: "bbbbbbb",
-    //     genre: "lalalla",
-    //     updated_at: "2023-04-21T05:43:25.814Z",
-    //   });
-    // },
-
     deleteQuote() {
       this.$store.dispatch("removeQuote", this.quote.id);
       this.$router.push("/");

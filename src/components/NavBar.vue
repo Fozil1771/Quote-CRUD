@@ -7,6 +7,8 @@
             class="border-2 border-gray-500 rounded-md py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             type="text"
             placeholder="Search"
+            v-model="searchInput"
+            @input="searchQuote"
           />
           <button
             class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2"
@@ -47,12 +49,16 @@ export default {
     return {
       showForm: false,
       formType: "create",
+      searchInput: "",
     };
   },
   methods: {
     showQuoteForm() {
       this.showForm = !this.showForm;
       console.log(this.showForm);
+    },
+    searchQuote() {
+      this.$store.commit("SET_SEARCH", this.searchInput);
     },
   },
 };
