@@ -15,11 +15,12 @@
     </div>
 
     <div class="w-full mt-5 text-center">
-      <button
+      <router-link
+        :to="{ name: 'quote', params: { id: quote.id } }"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
       >
         Details
-      </button>
+      </router-link>
     </div>
   </div>
 </template>

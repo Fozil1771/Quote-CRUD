@@ -4,7 +4,9 @@
   >
     <div class="bg-white rounded shadow-md p-6 w-full max-w-md">
       <div class="flex justify-between relative">
-        <h2 class="text-lg font-bold mb-4">Create a new quote</h2>
+        <h2 class="text-lg font-bold mb-4">
+          {{ formType === "create" ? "Create" : "Update" }} a quote
+        </h2>
         <button class="absolute top-0 right-0 border-none bg-inherit" @click="closeForm">
           x
         </button>
@@ -17,7 +19,7 @@
             type="text"
             name="title"
             id="title"
-            v-model="title"
+            v-model="quote.title"
             @focus="removeError('title')"
           />
           <span v-if="errors.title" class="text-red-500 text-sm">{{ errors.title }}</span>
@@ -29,7 +31,7 @@
             type="text"
             name="author"
             id="author"
-            v-model="author"
+            v-model="quote.author"
             @focus="removeError('author')"
           />
           <span v-if="errors.author" class="text-red-500 text-sm">{{
@@ -43,16 +45,16 @@
             type="text"
             name="genre"
             id="genre"
-            v-model="genre"
+            v-model="quote.genre"
             @focus="removeError('genre')"
           />
           <span v-if="errors.genre" class="text-red-500 text-sm">{{ errors.genre }}</span>
         </div>
         <button
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          @click.prevent="onFormSubmit"
+          @click.prevent="formType === 'create' ? onFormCreate() : onFormUpdate()"
         >
-          Create
+          {{ formType === "create" ? "Create" : "Update" }}
         </button>
       </form>
     </div>
@@ -66,19 +68,34 @@ export default {
       type: Boolean,
       required: true,
     },
+    formType: {
+      type: String,
+      required: true,
+    },
+    formData: {
+      type: Object,
+      required: true,
+    },
   },
   data() {
     return {
-      title: "",
-      author: "",
-      genre: "",
-      created_at: "",
-      updated_at: "",
+      quote: {
+        title: "",
+        author: "",
+        genre: "",
 
+        created_at: "",
+        updated_at: "",
+      },
       status: null,
       error: null,
       errors: {},
     };
+  },
+  mounted() {
+    if (this.formType === "update") {
+      this.quote = { ...this.formData };
+    }
   },
   methods: {
     getCurrentTime() {
@@ -88,30 +105,45 @@ export default {
     closeForm() {
       this.$emit("formState");
     },
-    onFormSubmit() {
-      const quote = {
-        title: this.title,
-        author: this.author,
-        genre: this.genre,
+    onFormCreate() {
+      this.quote.created_at = this.getCurrentTime();
+      this.quote.updated_at = this.getCurrentTime();
 
-        created_at: this.getCurrentTime(),
-        updated_at: this.getCurrentTime(),
-      };
-
-      if (!this.title) {
+      if (!this.quote.title) {
         this.errors.title = "Title is required";
       }
 
-      if (!this.author) {
+      if (!this.quote.author) {
         this.errors.author = "Author is required";
       }
 
-      if (!this.genre) {
+      if (!this.quote.genre) {
         this.errors.genre = "Genre is required";
       }
 
       if (Object.keys(this.errors).length === 0) {
-        this.$store.dispatch("addQuote", quote);
+        this.$store.dispatch("addQuote", this.quote);
+        this.$emit("formState");
+      }
+    },
+
+    onFormUpdate() {
+      this.quote.updated_at = this.getCurrentTime();
+
+      if (!this.quote.title) {
+        this.errors.title = "Title is required";
+      }
+
+      if (!this.quote.author) {
+        this.errors.author = "Author is required";
+      }
+
+      if (!this.quote.genre) {
+        this.errors.genre = "Genre is required";
+      }
+
+      if (Object.keys(this.errors).length === 0) {
+        this.$store.dispatch("updateQuote", this.quote);
         this.$emit("formState");
       }
     },
@@ -121,7 +153,6 @@ export default {
   },
   watch: {
     title(value) {
-      console.log(value);
       if (value.length) {
         this.removeError("title");
       }

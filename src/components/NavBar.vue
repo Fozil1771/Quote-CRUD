@@ -27,7 +27,12 @@
       </div>
     </div>
   </nav>
-  <QuoteForm v-if="showForm" :showForm="showForm" @formState="showQuoteForm" />
+  <QuoteForm
+    v-if="showForm"
+    :showForm="showForm"
+    @formState="showQuoteForm"
+    :formType="formType"
+  />
 </template>
 
 <script>
@@ -41,6 +46,7 @@ export default {
   data() {
     return {
       showForm: false,
+      formType: "create",
     };
   },
   methods: {

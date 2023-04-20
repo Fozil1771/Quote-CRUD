@@ -1,19 +1,29 @@
 import { createStore } from 'vuex'
-import { createQuote, deleteQuote, getAllQuotes, updateQuote } from './api'
+import { createQuote, deleteQuote, getAllQuotes, getQuote, updateQuote } from './api'
 
 const store = createStore({
   state: {
-    quotes: []
+    quotes: [],
+    quote: {}
   },
   mutations: {
-    GET_QUOTE(state, id) {
-      state.selectedQuote = state.quotes.find((quote) => quote.id === id)
-    },
     SET_QUOTES(state, quotes) {
       state.quotes = quotes
     },
+    SET_QUOTE(state, quote) {
+      state.quote = quote
+    },
     ADD_QUOTE(state, quote) {
       state.quotes.push(quote)
+    },
+    UPDATE_QUOTE(state, updatedQuote) {
+      const index = state.quotes.findIndex((quote) => quote.id === updatedQuote.id)
+      if (index !== -1) {
+        state.quotes.splice(index, 1, updatedQuote)
+      }
+    },
+    REMOVE_QUOTE(state, id) {
+      state.quotes = state.quotes.filter((quote) => quote.id !== id)
     }
   },
   actions: {
@@ -22,21 +32,20 @@ const store = createStore({
       commit('ADD_QUOTE', response)
     },
     async removeQuote({ commit }, id) {
-      const response = await deleteQuote(id)
-      commit('REMOVE_QUOTE', response)
+      await deleteQuote(id)
+      commit('REMOVE_QUOTE', id)
     },
     async updateQuote({ commit }, data) {
       const response = await updateQuote(data)
       commit('UPDATE_QUOTE', response)
     },
+    async getQuote({ commit }, id) {
+      const quote = await getQuote(id)
+      commit('SET_QUOTE', quote)
+    },
     async getQuotesList({ commit }) {
       const quotes = await getAllQuotes()
       commit('SET_QUOTES', quotes)
-    }
-  },
-  getters: {
-    getQuoteById: (state) => (id) => {
-      return state.quotes.find((quote) => quote.id === id)
     }
   }
 })

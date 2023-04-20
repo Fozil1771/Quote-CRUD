@@ -16,11 +16,12 @@ export const createQuote = async (data) => {
 
 export const deleteQuote = async (id) => {
   const response = await axios.delete(BASE_URL + `/${id}`)
+  console.log(response)
   return response.data
 }
 
 export const updateQuote = async (data) => {
-  const response = await axios.post(BASE_URL, data.id)
+  const response = await axios.put(BASE_URL + `/${data.id}`, data)
   return response.data
 }
 
