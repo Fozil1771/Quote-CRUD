@@ -1,0 +1,44 @@
+{
+  "quotes": [
+    {
+      "title": "asd",
+      "author": "sad",
+      "genre": "sad",
+      "created_at": "2023-04-20T00:47:35.199Z",
+      "updated_at": "2023-04-20T00:47:35.199Z",
+      "id": 18
+    },
+    {
+      "title": "asd",
+      "author": "sadf",
+      "genre": "asdf",
+      "created_at": "2023-04-20T00:47:44.196Z",
+      "updated_at": "2023-04-20T00:47:44.196Z",
+      "id": 19
+    },
+    {
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Classic",
+      "created_at": "2023-04-20T01:59:48.844Z",
+      "updated_at": "2023-04-20T01:59:48.845Z",
+      "id": 20
+    },
+    {
+      "title": "test",
+      "author": "Test",
+      "genre": "ttt",
+      "created_at": "2023-04-20T02:27:42.057Z",
+      "updated_at": "2023-04-20T02:27:42.058Z",
+      "id": 21
+    },
+    {
+      "title": "a",
+      "author": "a",
+      "genre": "a",
+      "created_at": "2023-04-20T02:34:13.061Z",
+      "updated_at": "2023-04-20T02:34:13.061Z",
+      "id": 22
+    }
+  ]
+}
