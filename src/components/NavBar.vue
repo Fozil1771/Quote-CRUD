@@ -50,7 +50,6 @@ export default {
   methods: {
     showQuoteForm() {
       this.showForm = !this.showForm;
-      console.log(this.showForm);
     },
     searchQuote() {
       this.$store.commit("SET_SEARCH", this.searchInput);

@@ -98,6 +98,18 @@ export default {
     }
   },
   methods: {
+    isInputValid() {
+      let t = /^[a-zA-Z\s]/;
+      if (this.quote.title == "" && !t.test(this.quote.title))
+        this.errors.title = "Title is invalid or empty";
+
+      if (this.quote.author == "" && !t.test(this.quote.author))
+        this.errors.author = "Author is invalid or empty";
+
+      if (this.quote.genre == "" && !t.test(this.quote.genre))
+        this.errors.genre = "Genre is invalid or empty";
+    },
+
     getCurrentTime() {
       const now = new Date();
       return now.toISOString();
@@ -109,17 +121,8 @@ export default {
       this.quote.created_at = this.getCurrentTime();
       this.quote.updated_at = this.getCurrentTime();
 
-      if (!this.quote.title) {
-        this.errors.title = "Title is required";
-      }
-
-      if (!this.quote.author) {
-        this.errors.author = "Author is required";
-      }
-
-      if (!this.quote.genre) {
-        this.errors.genre = "Genre is required";
-      }
+      this.isInputValid();
+      console.log(this.errors);
 
       if (Object.keys(this.errors).length === 0) {
         this.$store.dispatch("addQuote", this.quote);
@@ -130,17 +133,7 @@ export default {
     onFormUpdate() {
       this.quote.updated_at = this.getCurrentTime();
 
-      if (!this.quote.title) {
-        this.errors.title = "Title is required";
-      }
-
-      if (!this.quote.author) {
-        this.errors.author = "Author is required";
-      }
-
-      if (!this.quote.genre) {
-        this.errors.genre = "Genre is required";
-      }
+      this.isInputValid();
 
       if (Object.keys(this.errors).length === 0) {
         this.$store.dispatch("updateQuote", this.quote);

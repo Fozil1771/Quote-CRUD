@@ -98,17 +98,19 @@ const store = createStore({
     },
     sortedQuotes(state, getters) {
       let sortedData =
-        state.sortOption == 'newToOld'
-          ? getters.filteredQuotesBySearch.sort(
-              (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
-            )
-          : state.sortOption == 'oldToNew'
+        state.sortOption == 'oldToNew'
           ? getters.filteredQuotesBySearch.sort(
               (a, b) => Date.parse(a.created_at) - Date.parse(b.created_at)
             )
-          : getters.filteredQuotesBySearch.sort(
+          : state.sortOption == 'newToOld'
+          ? getters.filteredQuotesBySearch.sort(
+              (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at)
+            )
+          : state.sortOption == 'recentlyUpdated'
+          ? getters.filteredQuotesBySearch.sort(
               (a, b) => Date.parse(b.updated_at) - Date.parse(a.updated_at)
             )
+          : getters.filteredQuotesBySearch
 
       return sortedData
     },

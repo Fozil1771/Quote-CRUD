@@ -95,7 +95,6 @@ export default {
       this.showQuote = true;
       try {
         this.randomQuote = this.getRandomQuote();
-        console.log(this.showedQuotes);
       } catch (error) {
         console.error(error);
       }
