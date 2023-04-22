@@ -122,7 +122,6 @@ export default {
       this.quote.updated_at = this.getCurrentTime();
 
       this.isInputValid();
-      console.log(this.errors);
 
       if (Object.keys(this.errors).length === 0) {
         this.$store.dispatch("addQuote", this.quote);

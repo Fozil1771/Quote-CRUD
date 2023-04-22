@@ -16,7 +16,6 @@ export const createQuote = async (data) => {
 
 export const deleteQuote = async (id) => {
   const response = await axios.delete(BASE_URL + `/${id}`)
-  console.log(response)
   return response.data
 }
 

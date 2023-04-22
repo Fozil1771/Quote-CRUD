@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     onSortChange() {
-      console.log(this.sortOption);
       this.$store.commit("SET_SORT_OPTION", this.sortOption);
     },
   },

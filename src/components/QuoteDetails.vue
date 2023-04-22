@@ -58,7 +58,6 @@ export default {
   methods: {
     showQuoteForm() {
       this.showForm = !this.showForm;
-      console.log(this.showForm);
     },
     deleteQuote() {
       let confirmDelete = confirm("Are you sure you want to delete?");
