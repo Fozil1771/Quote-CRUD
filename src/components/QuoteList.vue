@@ -12,11 +12,12 @@ export default {
   components: {
     QuoteCard,
   },
+  data() {},
   computed: {
     ...mapGetters(["filteredQuotes"]),
   },
   mounted() {
-    console.log(this.filteredQuotes);
+    this.filteredQuotes;
   },
 };
 </script>

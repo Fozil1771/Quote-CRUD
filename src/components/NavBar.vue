@@ -1,6 +1,6 @@
 <template>
-  <nav class="flex items-center justify-between flex-wrap pb-5">
-    <div class="w-full block flex-grow sm:flex sm:items-center sm:w-auto">
+  <nav class="flex items-center justify-between flex-wrap mt-5 pb-5">
+    <div class="w-full flex-grow flex sm:items-center sm:w-auto">
       <div class="text-sm flex-grow">
         <div class="flex items-center">
           <input
@@ -10,11 +10,6 @@
             v-model="searchInput"
             @input="searchQuote"
           />
-          <button
-            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2"
-          >
-            Search
-          </button>
         </div>
       </div>
       <div>

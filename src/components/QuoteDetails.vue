@@ -1,13 +1,13 @@
 <template>
-  <div class="container mx-auto p-6">
+  <div class="container mx-auto p-3">
     <router-link
       :to="{ name: 'quoteList' }"
       class="text-gray-900 font-bold mb-5 rounded underline"
     >
       Back
     </router-link>
-    <div class="mt-5">
-      <h2 class="text-3xl font-bold mb-4">{{ quote.title }}</h2>
+    <div class="mt-5 max-w-md">
+      <h2 class="text-2xl font-medium mb-4">{{ quote.title }}</h2>
       <p class="text-gray-600 mb-8">{{ quote.genre }} by {{ quote.author }}</p>
     </div>
     <div class="flex w-2/4 gap-4">
@@ -61,8 +61,11 @@ export default {
       console.log(this.showForm);
     },
     deleteQuote() {
-      this.$store.dispatch("removeQuote", this.quote.id);
-      this.$router.push("/");
+      let confirmDelete = confirm("Are you sure you want to delete?");
+      if (confirmDelete) {
+        this.$store.dispatch("removeQuote", this.quote.id);
+        this.$router.push("/quotes");
+      }
     },
   },
 };
