@@ -11,16 +11,16 @@
       >
         Get a random quote or view all quotes where you can create update and delete
       </p>
-      <div class="flex gap-5 justify-center">
+      <div class="flex gap-5 justify-center sm:flex-row flex-col">
         <button
-          class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700"
+          class="inline-flex items-center justify-center px-4 py-3 text-base font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700"
           @click="onClickRandomQuote"
         >
           Random a quote
         </button>
         <router-link
           :to="{ name: 'quoteList' }"
-          class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+          class="inline-flex items-center justify-center px-4 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
         >
           All Quotes
           <svg
