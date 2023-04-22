@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col h-full max-w-sm mx-auto p-6 bg-gray-50 border border-gray-200 rounded-lg shadow hover:bg-gray-100 relative"
+    class="w-full flex flex-col h-full max-w-sm mx-auto p-6 bg-gray-50 border border-gray-200 rounded-lg shadow hover:bg-gray-100 relative"
   >
     <p class="font-normal text-gray-500 mb-4">
       {{ quote.title }}

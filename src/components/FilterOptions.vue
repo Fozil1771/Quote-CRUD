@@ -1,5 +1,16 @@
 <template>
-  <div class="bg-white shadow overflow-hidden sm:rounded-lg p-4">
+  <h3 class="font-bold mb-2 cursor-default" @click="showFilters">Filter By</h3>
+  <div class="filter-section__overlay" :class="{ active: isFilter }"></div>
+  <div
+    class="relative filter-section bg-white shadow overflow-hidden sm:rounded-lg p-4"
+    :class="{ active: isFilter }"
+  >
+    <button
+      class="close-btn absolute top-4 right-4 text-lg border-none bg-inherit"
+      @click="showFilters"
+    >
+      x
+    </button>
     <h3 class="font-bold mb-2">Filter By</h3>
 
     <div class="mb-4">
@@ -9,7 +20,7 @@
         <label
           v-for="(author, index) in authors"
           :key="index"
-          class="inline-flex items-center"
+          class="inline-flex items-center cursor-pointer"
         >
           <input
             type="checkbox"
@@ -54,6 +65,7 @@ export default {
       // genres: ["Genre 1", "Genre 2", "Genre 3"],
       selectedAuthors: [],
       selectedGenres: [],
+      isFilter: false,
     };
   },
   computed: {
@@ -67,6 +79,9 @@ export default {
     },
   },
   methods: {
+    showFilters() {
+      this.isFilter = !this.isFilter;
+    },
     onAuthorSelect(e) {
       if (e.target.checked) this.$store.commit("SET_FILTER_AUTHOR", e.target.value);
       else this.$store.commit("REMOVE_FILTER_AUTHOR", e.target.value);
@@ -78,3 +93,43 @@ export default {
   },
 };
 </script>
+
+<style>
+/* Style the container element */
+
+.filter-section {
+  position: fixed !important;
+  width: 30%;
+
+  height: 100%;
+  background: #fff;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: none;
+}
+
+.filter-section__overlay {
+  position: fixed !important;
+  width: 100%;
+
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: none;
+}
+
+.filter-section.active,
+.filter-section__overlay.active {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .filter-section {
+    max-width: 320px;
+    width: 100%;
+  }
+}
+</style>

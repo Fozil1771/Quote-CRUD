@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto p-3">
+  <div class="max-w-screen-xl mx-auto p-3">
     <div class="text-center">
       <h1
         class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl"

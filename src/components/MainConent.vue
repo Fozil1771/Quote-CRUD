@@ -1,11 +1,11 @@
 <template>
-  <SortOptions />
-  <section class="flex items-start gap-4">
-    <div class="basis-1/5">
+  <section class="">
+    <div class="flex justify-between items-center">
       <FilterOptions />
+      <SortOptions />
     </div>
     <div
-      class="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 gap-4 sm:grid-cols-1 grid-cols-1"
+      class="grid w-full xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 gap-4 sm:grid-cols-2 grid-cols-1"
     >
       <QuoteList />
     </div>
