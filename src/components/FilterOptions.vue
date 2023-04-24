@@ -1,6 +1,10 @@
 <template>
   <h3 class="font-bold mb-2 cursor-pointer" @click="showFilters">Filter By</h3>
-  <div class="filter-section__overlay" :class="{ active: isFilter }"></div>
+  <div
+    class="filter-section__overlay"
+    @click="showFilters"
+    :class="{ active: isFilter }"
+  ></div>
   <div
     class="relative filter-section bg-white shadow overflow-hidden sm:rounded-lg p-4"
     :class="{ active: isFilter }"
