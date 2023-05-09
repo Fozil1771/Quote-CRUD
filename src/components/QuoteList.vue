@@ -12,7 +12,9 @@ export default {
   components: {
     QuoteCard,
   },
-  data() {},
+  data() {
+    return {};
+  },
   computed: {
     ...mapGetters(["filteredQuotes"]),
   },

@@ -25,7 +25,6 @@ const router = createRouter({
       component: QuoteView,
       beforeEnter: (to, from, next) => {
         const quoteExists = checkIfQuoteExists(to.params.id)
-        console.log(quoteExists)
         if (quoteExists) {
           next()
         } else {

@@ -96,7 +96,7 @@ export default {
       try {
         this.randomQuote = this.getRandomQuote();
       } catch (error) {
-        console.error(error);
+        return error;
       }
     },
   },

@@ -100,13 +100,13 @@ export default {
   methods: {
     isInputValid() {
       let t = /^[a-zA-Z\s]/;
-      if (this.quote.title == "" && !t.test(this.quote.title))
+      if (this.quote.title != "" && !t.test(this.quote.title))
         this.errors.title = "Title is invalid or empty";
 
-      if (this.quote.author == "" && !t.test(this.quote.author))
+      if (this.quote.author != "" && !t.test(this.quote.author))
         this.errors.author = "Author is invalid or empty";
 
-      if (this.quote.genre == "" && !t.test(this.quote.genre))
+      if (this.quote.genre != "" && !t.test(this.quote.genre))
         this.errors.genre = "Genre is invalid or empty";
     },
 
