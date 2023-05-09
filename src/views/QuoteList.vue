@@ -6,6 +6,12 @@
     >
       Home page
     </router-link>
+    <router-link
+      :to="{ name: 'authorList' }"
+      class="text-gray-900 font-bold ml-5 mb-5 rounded underline"
+    >
+      Author list
+    </router-link>
     <NavBar />
     <MainContent />
   </div>

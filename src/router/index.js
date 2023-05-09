@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import QuoteView from '../views/QuoteView.vue'
 import QuoteList from '../views/QuoteList.vue'
+import AuthorList from '../views/AuthorList.vue'
 import NotFound from '../views/NotFound.vue'
 
 import { checkIfQuoteExists } from '../utils'
@@ -31,6 +32,11 @@ const router = createRouter({
           next({ name: 'notfound' })
         }
       }
+    },
+    {
+      path: '/authors',
+      name: 'authorList',
+      component: AuthorList
     },
     {
       path: '/404',
